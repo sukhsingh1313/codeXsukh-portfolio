@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeXsukh | Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-3 fw-bold" href="#">CodeXsukh</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-1 fw-bold mb-4">Full-Stack Developer & Coding Mentor</h1>
+            <p class="lead fs-4 mb-5">Building Digital Solutions & Empowering Developers</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="#courses" class="btn btn-lg btn-success px-5">View Courses</a>
+                <a href="#contact" class="btn btn-lg btn-outline-success px-5">Hire Me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-heading">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4">
+                    <img src="profile-placeholder.jpg" alt="CodeXsukh" class="img-fluid rounded-circle" style="max-width: 250px;">
+                </div>
+                <div class="col-md-8">
+                    <p class="lead">Hi! I'm Sukhchain Singh, a full-stack developer with 5+ years of experience in building enterprise-level applications. I specialize in:</p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="badge skill-badge fs-6">Python/Django</span>
+                        <span class="badge skill-badge fs-6">JavaScript/React</span>
+                        <span class="badge skill-badge fs-6">Node.js/Express</span>
+                        <span class="badge skill-badge fs-6">Database Design</span>
+                        <span class="badge skill-badge fs-6">REST APIs</span>
+                        <span class="badge skill-badge fs-6">Cloud Deployment</span>
+                    </div>
+                    <p class="mb-4">As an educator, I've helped 1000+ students transition into tech careers through comprehensive coding bootcamps and personalized mentorship programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-heading">Featured Courses</h2>
+            <div class="row g-4" id="course-list">
+                <!-- Courses loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-heading">Recent Projects</h2>
+            <div class="row g-4" id="project-list">
+                <!-- Projects loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-heading">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="contact-form">
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control form-control-lg" placeholder="Your Email">
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-light py-4">
+        <div class="container text-center">
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-success fs-4"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-success fs-4"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-success fs-4"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-success fs-4"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 CodeXsukh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
