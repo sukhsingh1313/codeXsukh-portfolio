@@ -23,20 +23,40 @@
             }
         ];
 
-        const projects = [
-            {
-                title: "E-Commerce Platform",
-                description: "Full-featured shopping platform with real-time analytics",
-                tech: ["React", "Node.js", "MongoDB"],
-                image: "project1.jpg"
-            },
-            {
-                title: "Learning Management System",
-                description: "Custom LMS for online course delivery",
-                tech: ["Django", "PostgreSQL", "AWS"],
-                image: "project2.jpg"
-            }
-        ];
+       const projects = [
+    {
+        title: "E-Commerce Platform",
+        description: "Full-featured shopping platform with real-time analytics",
+        tech: ["React", "Node.js", "MongoDB"],
+        image: "project1.jpg"
+    },
+    {
+        title: "Learning Management System",
+        description: "Custom LMS for online course delivery",
+        tech: ["Django", "MySQL", "AWS"],
+        image: "project2.jpg"
+    },
+    {
+        title: "School Management System",
+        description: "A complete school management solution to handle admissions, attendance, and results.",
+        tech: ["Django", "PostgreSQL", "Bootstrap"],
+        image: "project3.jpg"
+    },
+    {
+        title: "Saraswati Shikshan Sadan Institute Website",
+        description: "Official website for Saraswati Shikshan Sadan, managing student records, admissions, and events.",
+        tech: ["Django", "HTML", "CSS", "JavaScript"],
+        image: "project4.jpg",
+        link: "https://www.sssadan.com"
+    },
+    {
+        title: "Book Library Store",
+        description: "An online book library store with user authentication, book catalog, and rental system.",
+        tech: ["Django", "SQLite", "React"],
+        image: "project5.jpg"
+    }
+];
+
 
         function loadCourses() {
             const container = document.getElementById('course-list');
@@ -92,4 +112,27 @@
                 });
             });
         });
-    
+    (function() {
+        emailjs.init("yLFLYyUyw_NuiMg-T"); 
+    })();
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get form values
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let message = document.getElementById('message').value;
+
+        // Send email via EmailJS
+        emailjs.send("service_8ul4c1f", "template_vzp11pi", {
+            from_name: name,
+            from_email: email,
+            message: message
+        }).then(function(response) {
+            alert("Message sent successfully!");
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+            alert("Failed to send message. Please try again.");
+        });
+    });
