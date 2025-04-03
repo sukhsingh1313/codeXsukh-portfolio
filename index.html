@@ -3,10 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeXsukh | Portfolio</title>
+    
+    <title>CodeXsukh | Portfolio </title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Welcome to CodeXsukh's portfolio. A passionate full-stack developer specializing in web development, Django, React, and scalable applications.">
+    <meta name="keywords" content="CodeXsukh, portfolio, full-stack developer, web developer, Django, React, JavaScript, Python, Bootstrap, projects">
+    <meta name="author" content="Sukhchain Singh">
+    <meta name="robots" content="index, follow">
+
+
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+<meta property="og:title" content="CodeXsukh | Full-Stack Developer Portfolio">
+<meta property="og:description" content="Explore my projects, skills, and experience in full-stack web development. Passionate about Django, React, and scalable applications.">
+<meta property="og:image" content="https://sukhsingh1313.github.io/codeXsukh-portfolio/images/preview.png">
+<meta property="og:url" content="https://sukhsingh1313.github.io/codeXsukh-portfolio/">
+<meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/codeXsukh-portfolio/public/images/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="/codeXsukh-portfolio/public/css/style.css">
+
+    <!-- Performance Optimization -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+</head>
+
+        <style>
+    .social-icon {
+        transition: 0.3s;
+    }
+    .social-icon:hover {
+        color: #28a745; /* Bootstrap success green */
+        transform: scale(1.1);
+    }
+</style>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -49,14 +89,14 @@
                 <div class="col-md-8">
                     <p class="lead">Hi! I'm Sukhchain Singh, a full-stack developer with 5+ years of experience in building enterprise-level applications. I specialize in:</p>
                     <div class="d-flex flex-wrap gap-2 mb-4">
-                        <span class="badge skill-badge fs-6">Python/Django</span>
+                        <span class="badge skill-badge fs-6">Python/Django/Flask/FastAPI</span>
                         <span class="badge skill-badge fs-6">JavaScript/React</span>
                         <span class="badge skill-badge fs-6">Node.js/Express</span>
                         <span class="badge skill-badge fs-6">Database Design</span>
                         <span class="badge skill-badge fs-6">REST APIs</span>
                         <span class="badge skill-badge fs-6">Cloud Deployment</span>
                     </div>
-                    <p class="mb-4">As an educator, I've helped 1000+ students transition into tech careers through comprehensive coding bootcamps and personalized mentorship programs.</p>
+                    <p class="mb-4">As an educator, I've helped 200+ students transition into tech careers through comprehensive coding bootcamps and personalized mentorship programs.</p>
                 </div>
             </div>
         </div>
@@ -80,39 +120,85 @@
         </div>
     </section>
 
-    <section id="contact" class="py-5 bg-dark">
-        <div class="container">
-            <h2 class="section-heading">Get in Touch</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
+    <section id="contact" class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading fw-bold">Get in Touch</h2>
+            <p class="text-muted">We’d love to hear from you! Send us a message.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="p-4 bg-light rounded shadow-lg">
                     <form class="contact-form">
-                        <div class="mb-4">
-                            <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold"><i class="bi bi-person-fill"></i> Your Name</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="Enter your name">
                         </div>
-                        <div class="mb-4">
-                            <input type="email" class="form-control form-control-lg" placeholder="Your Email">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold"><i class="bi bi-envelope-fill"></i> Your Email</label>
+                            <input type="email" class="form-control form-control-lg" placeholder="Enter your email">
                         </div>
-                        <div class="mb-4">
-                            <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message"></textarea>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold"><i class="bi bi-chat-dots-fill"></i> Your Message</label>
+                            <textarea class="form-control form-control-lg" rows="5" placeholder="Write your message"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg w-100">Send Message</button>
+                        <button type="submit" class="btn btn-success btn-lg w-100 shadow-sm">
+                            <i class="bi bi-send-fill"></i> Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="bg-black text-light py-4">
-        <div class="container text-center">
-            <div class="d-flex justify-content-center gap-4 mb-4">
-                <a href="https://www.github.com/sukhsingh1313/" class="text-success fs-4"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/sukhchain-singh1313/" class="text-success fs-4"><i class="fab fa-linkedin"></i></a>
-               
-                <a href="https://www.instagram.com/x_sukh_13/" class="text-success fs-4"><i class="fab fa-instagram"></i></a>
+
+
+   <footer class="bg-black text-light py-5">
+    <div class="container">
+        <div class="row text-center text-md-start">
+            <!-- About Section -->
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold text-success">About CodeXsukh</h5>
+                <p class="text-muted">A passionate developer building creative and scalable solutions. Follow me for more tech insights.</p>
             </div>
-            <p>&copy; 2025 CodeXsukh. All rights reserved.</p>
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold text-success">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-muted text-decoration-none">Home</a></li>
+                    <li><a href="#projects" class="text-muted text-decoration-none">Projects</a></li>
+                    <li><a href="#about" class="text-muted text-decoration-none">About</a></li>
+                    <li><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold text-success">Contact</h5>
+                <p class="text-muted"><i class="fas fa-envelope"></i>codersukh@gmail.com</p>
+                <p class="text-muted"><i class="fas fa-phone"></i> comming soon... </p>
+                <p class="text-muted"><i class="fas fa-map-marker-alt"></i> Hanumangarh (Raj.), India</p>
+            </div>
         </div>
-    </footer>
+
+        <!-- Social Media -->
+        <div class="text-center mt-4">
+            <h5 class="fw-bold text-success">Follow Me</h5>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="https://www.github.com/sukhsingh1313/" class="text-light fs-4 social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sukhchain-singh1313/" class="text-light fs-4 social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/x_sukh_13/" class="text-light fs-4 social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center mt-4">
+            <p class="text-muted">&copy; 2025 CodeXsukh. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
    <script src="/codeXsukh-portfolio/public/js/script.js"></script>
