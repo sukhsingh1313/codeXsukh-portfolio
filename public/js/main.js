@@ -1,27 +1,27 @@
         // Dynamic Content Loading
-        // const courses = [
-        //     {
-        //         title: "Full-Stack Masterclass",
-        //         description: "Complete MERN Stack Development with TypeScript",
-        //         duration: "12 Weeks",
-        //         students: "1500+ Enrolled",
-        //         icon: "fa-laptop-code"
-        //     },
-        //     {
-        //         title: "Python & Django Pro",
-        //         description: "Backend Development with REST APIs and PostgreSQL",
-        //         duration: "8 Weeks",
-        //         students: "900+ Enrolled",
-        //         icon: "fa-server"
-        //     },
-        //     {
-        //         title: "Modern Frontend Development",
-        //         description: "React, Redux, and Advanced JavaScript Concepts",
-        //         duration: "6 Weeks",
-        //         students: "2000+ Enrolled",
-        //         icon: "fa-code"
-        //     }
-        // ];
+        const courses = [
+            {
+                title: "Full-Stack Masterclass",
+                description: "Complete MERN Stack Development with TypeScript",
+                duration: "12 Weeks",
+                students: "1500+ Enrolled",
+                icon: "fa-laptop-code"
+            },
+            {
+                title: "Python & Django Pro",
+                description: "Backend Development with REST APIs and PostgreSQL",
+                duration: "8 Weeks",
+                students: "900+ Enrolled",
+                icon: "fa-server"
+            },
+            {
+                title: "Modern Frontend Development",
+                description: "React, Redux, and Advanced JavaScript Concepts",
+                duration: "6 Weeks",
+                students: "2000+ Enrolled",
+                icon: "fa-code"
+            }
+        ];
 
        const projects = [
     {
