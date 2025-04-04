@@ -1,27 +1,27 @@
         // Dynamic Content Loading
-        const courses = [
-            {
-                title: "Full-Stack Masterclass",
-                description: "Complete MERN Stack Development with TypeScript",
-                duration: "12 Weeks",
-                students: "1500+ Enrolled",
-                icon: "fa-laptop-code"
-            },
-            {
-                title: "Python & Django Pro",
-                description: "Backend Development with REST APIs and PostgreSQL",
-                duration: "8 Weeks",
-                students: "900+ Enrolled",
-                icon: "fa-server"
-            },
-            {
-                title: "Modern Frontend Development",
-                description: "React, Redux, and Advanced JavaScript Concepts",
-                duration: "6 Weeks",
-                students: "2000+ Enrolled",
-                icon: "fa-code"
-            }
-        ];
+        // const courses = [
+        //     {
+        //         title: "Full-Stack Masterclass",
+        //         description: "Complete MERN Stack Development with TypeScript",
+        //         duration: "12 Weeks",
+        //         students: "1500+ Enrolled",
+        //         icon: "fa-laptop-code"
+        //     },
+        //     {
+        //         title: "Python & Django Pro",
+        //         description: "Backend Development with REST APIs and PostgreSQL",
+        //         duration: "8 Weeks",
+        //         students: "900+ Enrolled",
+        //         icon: "fa-server"
+        //     },
+        //     {
+        //         title: "Modern Frontend Development",
+        //         description: "React, Redux, and Advanced JavaScript Concepts",
+        //         duration: "6 Weeks",
+        //         students: "2000+ Enrolled",
+        //         icon: "fa-code"
+        //     }
+        // ];
 
        const projects = [
     {
@@ -58,25 +58,25 @@
 ];
 
 
-        function loadCourses() {
-            const container = document.getElementById('course-list');
-            courses.forEach(course => {
-                const card = document.createElement('div');
-                card.className = 'col-md-4';
-                card.innerHTML = `
-                    <div class="course-card p-4 h-100">
-                        <i class="fas ${course.icon} fs-1 mb-3 text-success"></i>
-                        <h3 class="mb-3">${course.title}</h3>
-                        <p class="text-secondary">${course.description}</p>
-                        <div class="d-flex justify-content-between text-success">
-                            <span>${course.duration}</span>
-                            <span>${course.students}</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+        // function loadCourses() {
+        //     const container = document.getElementById('course-list');
+        //     courses.forEach(course => {
+        //         const card = document.createElement('div');
+        //         card.className = 'col-md-4';
+        //         card.innerHTML = `
+        //             <div class="course-card p-4 h-100">
+        //                 <i class="fas ${course.icon} fs-1 mb-3 text-success"></i>
+        //                 <h3 class="mb-3">${course.title}</h3>
+        //                 <p class="text-secondary">${course.description}</p>
+        //                 <div class="d-flex justify-content-between text-success">
+        //                     <span>${course.duration}</span>
+        //                     <span>${course.students}</span>
+        //                 </div>
+        //             </div>
+        //         `;
+        //         container.appendChild(card);
+        //     });
+        // }
 
         function loadProjects() {
             const container = document.getElementById('project-list');
