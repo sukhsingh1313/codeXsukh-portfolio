@@ -318,31 +318,39 @@
                 });
             });
         });
-    (function() {
-        emailjs.init("yLFLYyUyw_NuiMg-T"); 
+   (function() {
+        emailjs.init("yLFLYyUyw_NuiMg-T"); // Replace with your actual User ID
     })();
 
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // Store original button content
+        const originalBtnContent = submitBtn.innerHTML;
+        
+        // Add loading state
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+        submitBtn.disabled = true;
 
-        // Get form values
-        let name = document.getElementById('name').value;
-        let email = document.getElementById('email').value;
-        let message = document.getElementById('message').value;
+        const serviceID = 'service_8ul4c1f'; // Replace with your Service ID
+        const templateID = 'template_vzp11pi'; // Replace with your Template ID
 
-        // Send email via EmailJS
-        emailjs.send("service_8ul4c1f", "template_vzp11pi", {
-            from_name: name,
-            from_email: email,
-            message: message
-        }).then(function(response) {
-            alert("Message sent successfully!");
-            document.getElementById('contactForm').reset();
-        }, function(error) {
-            alert("Failed to send message. Please try again.");
-        });
-    });
-   </script>
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                alert('Message sent successfully!');
+                document.getElementById('contactForm').reset();
+            })
+            .catch((error) => {
+                console.error('Failed to send message:', error);
+                alert('Failed to send message. Please try again or contact me directly at codersukh@gmail.com');
+            })
+            .finally(() => {
+                // Restore original button state
+                submitBtn.innerHTML = originalBtnContent;
+                submitBtn.disabled = false;
+            });
+    });   </script>
 
   
 </body>
