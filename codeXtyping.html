@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeXtyping</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --error-color: #ef4444;
+      --success-color: #22c55e;
+      --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    }
+     /* Add these new styles */
+     .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 1rem 0;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, var(--primary-color), #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(229, 231, 235, 0.5);
+      color: #6b7280;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .glass-container {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    }
+
+    .settings-card {
+      background: rgba(243, 244, 246, 0.6);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .prompt-container {
+      background: rgba(243, 244, 246, 0.6);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      height: 200px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .prompt-text span {
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .prompt-text span.current {
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 4px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .prompt-text span.correct {
+      color: var(--success-color);
+      text-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+    }
+
+    .prompt-text span.incorrect {
+      color: var(--error-color);
+      text-decoration: underline wavy;
+      animation: shake 0.4s ease;
+    }
+
+    .input-container {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    #typing-input {
+      font-size: 1.3rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 1rem;
+      border: 2px solid #e5e7eb;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    #typing-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+      transform: scale(1.02);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 2px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary-color);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0%, 100% { background-color: rgba(99, 102, 241, 0.2); }
+      50% { background-color: rgba(99, 102, 241, 0.3); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-container">
+    <div class="header">
+        <h1>CodeXtyping</h1>
+      </div>
+    <div class="settings-card">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <select class="form-select" id="category-select">
+            <option value="quotes">Quotes</option>
+            <option value="tech">Tech</option>
+            <option value="stories">Stories</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" id="time-select">
+            <option value="30">30s</option>
+            <option value="60">1m</option>
+            <option value="120">2m</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button id="start-btn" class="btn btn-primary w-100">Start Test</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-container">
+      <div class="prompt-text" id="prompt-text"></div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="typing-input" placeholder="Start typing here..." disabled>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="wpm">0</div>
+        <div class="stat-label">Words/Min</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="accuracy">100%</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="timer">0s</div>
+        <div class="stat-label">Time Left</div>
+      </div>
+    </div>
+    <div class="footer">
+        <p>All rights reserved © 2025 | Made by developer Sukhchain Singh</p>
+      </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = {
+        promptText: document.getElementById('prompt-text'),
+        typingInput: document.getElementById('typing-input'),
+        startBtn: document.getElementById('start-btn'),
+        wpm: document.getElementById('wpm'),
+        accuracy: document.getElementById('accuracy'),
+        timer: document.getElementById('timer'),
+        timeSelect: document.getElementById('time-select'),
+        categorySelect: document.getElementById('category-select'),
+        progressFill: document.getElementById('progress-fill')
+      };
+
+      const state = {
+        currentPrompt: '',
+        startTime: null,
+        timerInterval: null,
+        totalTyped: 0,
+        correctChars: 0,
+        testActive: false,
+        timeLimit: 60
+      };
+
+      const prompts = {
+        quotes: [
+          "Success is not final, failure is not fatal: it is the courage to continue that counts. ",
+          "The only way to do great work is to love what you do. ",
+          "Innovation distinguishes between a leader and a follower. "
+        ].map(text => text.repeat(8)),
+        tech: [
+          "JavaScript is the backbone of modern web development, powering interactive experiences across the internet. ",
+          "Responsive design ensures optimal viewing experiences across various devices and screen sizes. ",
+          "APIs act as intermediaries enabling different software systems to communicate seamlessly. "
+        ].map(text => text.repeat(6)),
+        stories: [
+          "The moon cast an ethereal glow over the silent forest, where shadows danced between ancient trees. ",
+          "In the heart of the bustling city, a small café hidden between skyscrapers held countless untold stories. "
+        ].map(text => text.repeat(5))
+      };
+
+      function initTest() {
+        const category = elements.categorySelect.value;
+        const time = parseInt(elements.timeSelect.value);
+        const promptArray = prompts[category];
+        state.currentPrompt = promptArray[Math.floor(Math.random() * promptArray.length)];
+        state.timeLimit = time;
+        state.totalTyped = 0;
+        state.correctChars = 0;
+        state.testActive = true;
+
+        elements.typingInput.disabled = false;
+        elements.typingInput.value = '';
+        elements.typingInput.focus();
+        elements.progressFill.style.width = '0%';
+
+        displayPrompt();
+        startTimer();
+      }
+
+      function displayPrompt() {
+        elements.promptText.innerHTML = state.currentPrompt
+          .split('')
+          .map(char => `<span>${char}</span>`)
+          .join('');
+        elements.promptText.querySelector('span')?.classList.add('current');
+      }
+
+      function startTimer() {
+        clearInterval(state.timerInterval);
+        state.startTime = Date.now();
+        state.timerInterval = setInterval(() => {
+          const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+          const remaining = state.timeLimit - elapsed;
+          elements.timer.textContent = `${remaining}s`;
+
+          if (remaining <= 0) {
+            completeTest();
+          } else {
+            updateStats();
+          }
+        }, 1000);
+      }
+
+      function updateStats() {
+        const elapsed = (Date.now() - state.startTime) / 1000;
+        const wpm = Math.round((state.correctChars / 5) / (elapsed / 60));
+        elements.wpm.textContent = isNaN(wpm) ? 0 : wpm;
+
+        const accuracy = state.totalTyped > 0
+          ? Math.round((state.correctChars / state.totalTyped) * 100)
+          : 100;
+        elements.accuracy.textContent = `${accuracy}%`;
+
+        const progress = Math.min((state.totalTyped / state.currentPrompt.length) * 100, 100);
+        elements.progressFill.style.width = `${progress}%`;
+      }
+
+      function completeTest() {
+        clearInterval(state.timerInterval);
+        state.testActive = false;
+        elements.typingInput.disabled = true;
+        updateStats();
+      }
+
+      elements.typingInput.addEventListener('input', () => {
+        if (!state.testActive) return;
+        const input = elements.typingInput.value;
+        const spans = elements.promptText.querySelectorAll('span');
+
+        state.totalTyped++;
+
+        for (let i = 0; i < spans.length; i++) {
+          const char = input[i];
+          spans[i].classList.remove('correct', 'incorrect', 'current');
+
+          if (char == null) break;
+          if (char === state.currentPrompt[i]) {
+            spans[i].classList.add('correct');
+          } else {
+            spans[i].classList.add('incorrect');
+          }
+        }
+
+        const currentSpan = spans[input.length];
+        if (currentSpan) currentSpan.classList.add('current');
+
+        state.correctChars = [...input].filter((c, i) => c === state.currentPrompt[i]).length;
+        updateStats();
+      });
+
+      elements.startBtn.addEventListener('click', initTest);
+    });
+  </script>
+</body>
+</html>
