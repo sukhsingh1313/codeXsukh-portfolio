@@ -334,6 +334,7 @@ function loadProjects() {
                     
                 </h3>
                 <p class="text-secondary mb-3">${project.description}</p>
+                 <p class="text-warning mb-3">${project.peragraph}</p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
                     ${project.tech.map(t => `<span class="badge bg-success bg-opacity-10 text-success">${t}</span>`).join('')}
                 </div>
@@ -341,7 +342,7 @@ function loadProjects() {
                     <a href="${project.link}" class="btn btn-outline-success btn-sm" target="_blank">
                         <i class="fas fa-external-link-alt me-2"></i>Live Demo
                     </a>` : ''}
-                    <p class="text-warning mb-3">${project.peragraph}</p>
+                   
             </div>
         `;
         container.appendChild(card);
