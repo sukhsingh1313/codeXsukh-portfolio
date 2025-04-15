@@ -266,18 +266,21 @@
         description: "Full-featured shopping platform with real-time analytics",
         tech: ["React", "Node.js", "MongoDB"],
         // image: "project1.jpg"
+        peragraph: "comming soon.."
     },
     {
         title: "Learning Management System",
         description: "Custom LMS for online course delivery",
         tech: ["Django", "MySQL", "AWS"],
         // image: "project2.jpg"
+        peragraph: "comming soon.."
     },
     {
         title: "School Management System",
         description: "A complete school management solution to handle admissions, attendance, and results.",
         tech: ["Django", "PostgreSQL", "Bootstrap"],
         // image: "project3.jpg"
+        peragraph: "comming soon.."
     },
     {
         title: "Saraswati Shikshan Sadan Institute Website",
@@ -285,12 +288,14 @@
         tech: ["Django", "HTML", "CSS", "JavaScript"],
         // image: "project4.jpg",
         link: "https://www.sssadan.com"
+    
     },
     {
         title: "Book Library Store",
         description: "An online book library store with user authentication, book catalog, and rental system.",
         tech: ["Django", "SQLite", "React"],
         // image: "project5.jpg"
+        peragraph: "comming soon.."
     }
 ];
 
@@ -326,6 +331,7 @@ function loadProjects() {
                         `<a href="${project.link}" class="text-decoration-none text-light" target="_blank">` : ''}
                         ${project.title}
                     ${project.link ? '</a>' : ''}
+                    
                 </h3>
                 <p class="text-secondary mb-3">${project.description}</p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
@@ -335,6 +341,7 @@ function loadProjects() {
                     <a href="${project.link}" class="btn btn-outline-success btn-sm" target="_blank">
                         <i class="fas fa-external-link-alt me-2"></i>Live Demo
                     </a>` : ''}
+                    <p class="text-warning mb-3">${project.peragraph}</p>
             </div>
         `;
         container.appendChild(card);
