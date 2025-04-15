@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Shooter Game</title>
+  <title>CodeX Shooting Game</title>
   <style>
     body {
       background-color: #111;
@@ -55,6 +55,19 @@
       text-shadow: 0 0 5px #f00;
     }
     
+    .game-title {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      color: #5af;
+      text-shadow: 0 0 15px rgba(100, 150, 255, 0.8);
+      z-index: 2;
+      font-family: 'Arial Black', sans-serif;
+      letter-spacing: 2px;
+    }
+    
     .game-over, .game-start {
       position: absolute;
       top: 50%;
@@ -66,10 +79,13 @@
       text-align: center;
       border: 2px solid #555;
       z-index: 2;
+      width: 90%;
+      max-width: 440px;
     }
     
     .game-start h1 {
       color: #5af;
+      margin-top: 0;
     }
     
     .game-over h1 {
@@ -120,6 +136,44 @@
     .hidden {
       display: none;
     }
+    
+    .instructions {
+      background: rgba(0, 0, 30, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 2px solid #444;
+    }
+    
+    .instructions h3 {
+      color: #5af;
+      margin: 0 0 15px 0;
+      font-size: 20px;
+    }
+    
+    .instructions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+    
+    .instructions li {
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #ddd;
+      padding-left: 25px;
+      position: relative;
+      line-height: 1.4;
+    }
+    
+    .instructions li:before {
+      content: '➤';
+      position: absolute;
+      left: 0;
+      color: #5af;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -129,13 +183,24 @@
       <div class="lives">Lives: <span id="livesValue">3</span></div>
     </div>
     
+    <!-- <div class="game-title">CODEX SHOOTER</div> -->
+    
     <canvas id="gameCanvas" width="480" height="640"></canvas>
     
     <div class="game-start" id="gameStart">
-      <h1>SPACE SHOOTER</h1>
-      <p>Use arrow keys to move and spacebar to shoot</p>
-      <p>On mobile, use the on-screen controls</p>
-      <button id="startButton">START GAME</button>
+      <h1>WELCOME TO CODEX SHOOTER</h1>
+      <div class="instructions">
+        <h3>How to Play:</h3>
+        <ul>
+          <li>Use ← → arrow keys to move (or touch buttons below)</li>
+          <li>Press SPACE to shoot (or tap fire button)</li>
+          <li>Destroy incoming enemies for points</li>
+          <li>Avoid enemy collisions - 3 hits max!</li>
+          <li>Bigger enemies need multiple hits</li>
+          <li>Survive as long as possible!</li>
+        </ul>
+      </div>
+      <button id="startButton">START MISSION</button>
     </div>
     
     <div class="game-over hidden" id="gameOver">
@@ -218,7 +283,7 @@
       const bullets = [];
       const bulletSpeed = 7;
       let lastBulletTime = 0;
-      const bulletCooldown = 200; // milliseconds
+      const bulletCooldown = 200;
       
       // Enemies
       const enemies = [];
@@ -284,6 +349,11 @@
         bullets.length = 0;
         enemies.length = 0;
         explosions.length = 0;
+        enemySpawnRate = 0.02;
+        
+        // Reset enemy speeds
+        enemyTypes[1].speed = 1.5;
+        enemyTypes[2].speed = 3;
         
         scoreDisplay.textContent = score;
         livesDisplay.textContent = lives;
@@ -409,7 +479,6 @@
         for (let i = 0; i < enemies.length; i++) {
           enemies[i].y += enemies[i].speed;
           
-          // Check if enemy is off screen
           if (enemies[i].y > canvas.height) {
             enemies.splice(i, 1);
             i--;
@@ -427,9 +496,7 @@
         for (let i = 0; i < enemies.length; i++) {
           const enemy = enemies[i];
           
-          // Draw different enemy shapes based on type
           if (enemy.color === '#ff5555') {
-            // Triangle enemy
             ctx.beginPath();
             ctx.moveTo(enemy.x + enemy.width / 2, enemy.y);
             ctx.lineTo(enemy.x + enemy.width, enemy.y + enemy.height);
@@ -438,20 +505,17 @@
             ctx.fillStyle = enemy.color;
             ctx.fill();
           } else if (enemy.color === '#55ff55') {
-            // Rectangle enemy
             ctx.beginPath();
             ctx.rect(enemy.x, enemy.y, enemy.width, enemy.height);
             ctx.fillStyle = enemy.color;
             ctx.fill();
             
-            // Draw "eyes"
             ctx.beginPath();
             ctx.arc(enemy.x + 15, enemy.y + 15, 5, 0, Math.PI * 2);
             ctx.arc(enemy.x + enemy.width - 15, enemy.y + 15, 5, 0, Math.PI * 2);
             ctx.fillStyle = '#000';
             ctx.fill();
           } else {
-            // Circle enemy
             ctx.beginPath();
             ctx.arc(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, enemy.width / 2, 0, Math.PI * 2);
             ctx.fillStyle = enemy.color;
@@ -503,7 +567,14 @@
       }
       
       function checkCollisions() {
-        // Check bullet-enemy collisions
+        // Update difficulty based on score
+        enemySpawnRate = Math.min(0.06, 0.02 + score / 3000);
+        if(score > 1000) {
+          enemyTypes[1].speed = 1.8;
+          enemyTypes[2].speed = 3.5;
+        }
+        
+        // Bullet-enemy collisions
         for (let i = 0; i < bullets.length; i++) {
           for (let j = 0; j < enemies.length; j++) {
             if (
@@ -512,7 +583,6 @@
               bullets[i].y < enemies[j].y + enemies[j].height &&
               bullets[i].y + bullets[i].height > enemies[j].y
             ) {
-              // Collision detected
               enemies[j].health--;
               
               if (enemies[j].health <= 0) {
@@ -525,9 +595,6 @@
                 score += enemies[j].points;
                 scoreDisplay.textContent = score;
                 
-                // Increase difficulty with score
-                enemySpawnRate = Math.min(0.05, 0.02 + score / 5000);
-                
                 enemies.splice(j, 1);
                 j--;
               }
@@ -539,7 +606,7 @@
           }
         }
         
-        // Check player-enemy collisions
+        // Player-enemy collisions
         for (let i = 0; i < enemies.length; i++) {
           if (
             player.x < enemies[i].x + enemies[i].width &&
@@ -547,7 +614,6 @@
             player.y < enemies[i].y + enemies[i].height &&
             player.y + player.height > enemies[i].y
           ) {
-            // Collision detected
             createExplosion(
               enemies[i].x + enemies[i].width / 2,
               enemies[i].y + enemies[i].height / 2,
@@ -578,11 +644,9 @@
         
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Update and draw stars
         updateStars();
         drawStars();
         
-        // Update player position
         if (keys.left && player.x > 0) {
           player.x -= player.speed;
         }
@@ -593,24 +657,19 @@
           createBullet();
         }
         
-        // Create enemies
         createEnemy();
         
-        // Update game objects
         updateBullets();
         updateEnemies();
         updateExplosions();
         
-        // Check collisions
         checkCollisions();
         
-        // Draw game objects
         drawBullets();
         drawEnemies();
         player.draw();
         drawExplosions();
         
-        // Request next frame
         animationId = requestAnimationFrame(animate);
       }
     });
