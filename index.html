@@ -46,6 +46,25 @@
         color: #28a745; /* Bootstrap success green */
         transform: scale(1.1);
     }
+            * Add to your existing styles */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.125);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.project-card a {
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.project-card a:hover {
+    color: var(--bs-success);
+}
 </style>
 
 </head>
@@ -119,6 +138,15 @@
                 <!-- Projects loaded via JavaScript -->
             </div>
         </div>
+        <li class="nav-item">
+    <a class="nav-link" href="#projects">Projects</a>
+</li>
+<!-- Add this -->
+<li class="nav-item">
+    <a class="nav-link" href="codextyping.html" target="_blank">
+        Typing Test <i class="fas fa-external-link-alt"></i>
+    </a>
+</li>
     </section>
 
 <section id="contact" class="py-5 bg-dark text-white">
