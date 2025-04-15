@@ -257,6 +257,12 @@
         ];
 
        const projects = [
+           {
+        title: "CodeXtyping Speed Test",
+        description: "Interactive typing speed test application with real-time analytics and progress tracking",
+        tech: ["JavaScript", "Bootstrap", "CSS3", "HTML5"],
+        link: "codeXtyping.html" // Update path as needed
+    }, 
     {
         title: "E-Commerce Platform",
         description: "Full-featured shopping platform with real-time analytics",
@@ -310,25 +316,32 @@
                 container.appendChild(card);
             });
         }
-
-        function loadProjects() {
-            const container = document.getElementById('project-list');
-            projects.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'col-md-6';
-                card.innerHTML = `
-                    <div class="project-card p-4 h-100">
-                      
-                        <h3>${project.title}</h3>
-                        <p class="text-secondary">${project.description}</p>
-                        <div class="d-flex gap-2">
-                            ${project.tech.map(t => `<span class="badge skill-badge">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+function loadProjects() {
+    const container = document.getElementById('project-list');
+    projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'col-md-6 mb-4';
+        card.innerHTML = `
+            <div class="project-card p-4 h-100 shadow-sm rounded-3">
+                <h3 class="mb-3">
+                    ${project.link ? 
+                        `<a href="${project.link}" class="text-decoration-none text-dark" target="_blank">` : ''}
+                        ${project.title}
+                    ${project.link ? '</a>' : ''}
+                </h3>
+                <p class="text-secondary mb-3">${project.description}</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    ${project.tech.map(t => `<span class="badge bg-success bg-opacity-10 text-success">${t}</span>`).join('')}
+                </div>
+                ${project.link ? `
+                    <a href="${project.link}" class="btn btn-outline-success btn-sm" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i>Live Demo
+                    </a>` : ''}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
