@@ -673,6 +673,39 @@
         animationId = requestAnimationFrame(animate);
       }
     });
+
+     // Prevent right-click context menu
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// Prevent common keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+        (e.ctrlKey && e.key === 'u')) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Extra protection (not reliable)
+let devtools = /./;
+devtools.toString = function() {
+    this.opened = true;
+    return '';
+}
+
+setInterval(function() {
+    if (devtools.opened) {
+        devtools.opened = false;
+        window.location.reload();
+    }
+}, 1000);
   </script>
 </body>
 </html>
